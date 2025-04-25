@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Browser.Dom" Version="2.18.1" />
+    <PackageReference Include="Fable.Browser.WebGL" Version="1.3.0" />
+    <PackageReference Include="Fable.Core" Version="4.5.0" />
+    <PackageReference Include="Fable.SimpleHttp" Version="3.6.0" />
+    <PackageReference Include="Fable.SimpleJson" Version="3.24.0" />
+    <PackageReference Include="FSharp.Core" Version="8.0.100" />
+  </ItemGroup>
+
+  <ItemGroup>
+    
+     <Compile Include="src\Engine\GetSpriteData.fs" />
+    <Compile Include="src\Engine\Input.fs" />
+    <Compile Include="src\Engine\Sprite.fs" />
+    <Compile Include="src\Engine\Runtime.fs" />
+    <Compile Include="src\Engine\Scene.fs" />
+    <Compile Include="src\Engine\GameLoop.fs" />
+    
+    <Compile Include="src\Main.fs" />
+   
+    <Compile Include="src\entry.fs" />
+    
+  </ItemGroup>
+</Project>

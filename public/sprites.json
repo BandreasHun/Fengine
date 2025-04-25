@@ -1,0 +1,26 @@
+{
+    "test.png": [
+        {
+            "startx": 0,
+            "starty": 0,
+            "width": 1024,
+            "height": 1024,
+            "col": 0,
+            "row": 0,
+            "animation": false,
+            "no":   0
+        }
+    ],
+    "wepewal.png": [
+        {
+            "startx":   0,
+            "starty":   0,
+            "width":   1024,
+            "height":  1024,
+            "col":      8,
+            "row":      1,
+            "animation": true,
+            "no":   0
+        }
+    ]
+}
