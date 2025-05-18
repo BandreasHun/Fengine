@@ -1,14 +1,12 @@
-// src/Engine/Input.fs
 namespace Engine
 
 module Input =
     open Browser.Dom
     open Browser.Types
 
-    // internal mutable state: which keys are currently held down
     let mutable private pressed = Set.empty<string>
+    let mutable private mouseJustClicked: (float * float) option = None
 
-    /// Call once at startup to wire up key listeners
     let Init () =
         window.addEventListener("keydown", fun (e: Event) ->
             let ke = e :?> KeyboardEvent
@@ -18,7 +16,19 @@ module Input =
             let ke = e :?> KeyboardEvent
             pressed <- pressed.Remove ke.key
         )
+        let canvasElement = document.querySelector("canvas") :?> HTMLCanvasElement
+        canvasElement.addEventListener("mousedown", fun (e: Event) -> 
+            let me = e :?> MouseEvent
+            let rect = canvasElement.getBoundingClientRect()
+            let canvasX = float (me.clientX - rect.left)
+            let canvasY = float (me.clientY - rect.top)
+            mouseJustClicked <- Some (canvasX, canvasY)
+        )
 
-    /// Returns true if the given key (e.g. "ArrowUp", "a", " ") is currently down
     let IsDown (key:string) : bool =
         pressed.Contains key
+
+    let ConsumeClick() : (float * float) option =
+        let click = mouseJustClicked
+        mouseJustClicked <- None
+        click

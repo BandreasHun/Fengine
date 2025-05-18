@@ -3,27 +3,35 @@ module Entry =
 
     open Browser.Dom
     open Fable.Core.JsInterop
-    open Sprite
-    open GameLoop
-    open Main
-    open Runtime
-    open Input
-    open GetSpriteData
+    open Engine.Sprite 
+    open Engine.GameLoop
+    open Main 
+    open Engine.Runtime
+    open Engine.Input
+    open Engine.GetSpriteData
+    open Engine.Scene
+
+    let mutable alreadyStarted = false
 
     let init() =
-        Input.Init()
-        GameLoop.onUpdate update
-        GameLoop.onDraw Scene.draw
-        GameLoop.start()
-        Main.main()
+        if not alreadyStarted then
+            alreadyStarted <- true
+            
+            Input.Init() 
+            
+            Main.main() 
+            
+            GameLoop.onUpdate Main.update 
+            GameLoop.onDraw (fun dt -> Scene.draw Main.mainCam dt) 
+            GameLoop.onAnimate (fun dt -> Scene.updateAnimations (dt / 1000.0))
+            
+            GameLoop.start()
 
-    
     Async.StartWithContinuations(
-        loadSpriteAtlas(),
-        (fun _ ->
-            console.log "Sprite atlas betöltve."
-            init()),
+        Engine.GetSpriteData.loadSpriteAtlas(),
+        (fun _ -> init()),
         (fun ex ->
-            console.error("Hiba a sprite atlas betöltésekor:", ex)),
-        (fun _ -> ())
+            Browser.Dom.console.error("Failed to load sprite atlas in entry.fs (GetSpriteData):", ex)
+            ()), 
+        (fun _ -> ()) 
     )

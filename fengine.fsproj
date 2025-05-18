@@ -15,17 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    
-     <Compile Include="src\Engine\GetSpriteData.fs" />
-    <Compile Include="src\Engine\Input.fs" />
-    <Compile Include="src\Engine\Sprite.fs" />
-    <Compile Include="src\Engine\Runtime.fs" />
-    <Compile Include="src\Engine\Scene.fs" />
-    <Compile Include="src\Engine\GameLoop.fs" />
-    
-    <Compile Include="src\Main.fs" />
-   
-    <Compile Include="src\entry.fs" />
-    
+    <Compile Include="src\Engine\GetSpriteData.fs" /> 
+    <Compile Include="src\Engine\Input.fs" />        
+    <Compile Include="src\Engine\Sprite.fs" />        
+    <Compile Include="src\Engine\Runtime.fs" />       
+    <Compile Include="src\Engine\Camera.fs" />        
+    <Compile Include="src\Engine\Physics.fs" />       
+    <Compile Include="src\Engine\Scene.fs" />         
+    <Compile Include="src\Engine\GameLoop.fs" />     
+    <Compile Include="src\SoundManager.fs" /> 
+    <Compile Include="src\main.fs" />             
+    <Compile Include="src\entry.fs" />            
   </ItemGroup>
 </Project>
