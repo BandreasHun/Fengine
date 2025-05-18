@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: "./src/entry.fs.js",
   output: {
-    path: path.join(__dirname, "./dist"),
+    path: path.join(__dirname, "./public"), // Changed output path to public
     filename: "bundle.js"
   },
   mode: "development",
